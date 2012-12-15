@@ -15,6 +15,6 @@ class Pixel
   end
 
   def draw
-    @screen[@x, @y] = true
+    @screen[@y, @x] = true
   end
 end

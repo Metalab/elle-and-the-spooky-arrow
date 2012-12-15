@@ -35,7 +35,7 @@ class Screen
   end
 
   def []=(row, col, value)
-    @screen[row][col] = value
+    @screen[col][row] = value
   end
 
   # convert to bit stream
