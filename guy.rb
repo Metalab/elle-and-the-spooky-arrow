@@ -5,8 +5,8 @@ class Guy
     @direction = 1
     @lane = 0
     @body = [
-              [0, Proc.new { @lane + 0 }], [1, Proc.new { @lane + 0 }],
-              [0, Proc.new { @lane + 1 }], [0, Proc.new { @lane + 2 }]
+              [0, Proc.new { @lane * 3 + 0 }], [1, Proc.new { @lane * 3 + 0 }],
+              [0, Proc.new { @lane * 3 + 1 }], [0, Proc.new { @lane * 3 + 2 }]
             ]
   end
 
