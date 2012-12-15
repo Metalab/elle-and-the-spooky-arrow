@@ -6,6 +6,7 @@ class Joystick
   def initialize(device = "/dev/input/js0")
     @device = device
     @fd = IO::sysopen(@device, Fcntl::O_RDONLY)
+    work
   end
 
   def action

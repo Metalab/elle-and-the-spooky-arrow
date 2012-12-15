@@ -13,7 +13,6 @@ class Game
       screen = Screen.new
       device = Device.new(screen)
       j1 = Joystick.new
-      j1.work
       p1 = Pixel.new(screen)
 
       p1.action(j1.action)
