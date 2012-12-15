@@ -12,11 +12,11 @@ class Game
     device = Device.new(screen)
     audio = Audio.new('data/noise.pd')
     j1 = Joystick.new
-    p1 = Pixel.new(screen)
+    arrow = Arrow.new(screen)
 
     loop do
-      p1.action(j1.action)
-      p1.draw
+      #p1.action(j1.action)
+      arrow.draw
       device.flush
       sleep(1/@@fps.to_f)
     end
