@@ -2,20 +2,30 @@ class Screen
   NINE_BITS =  /........./
   EIGHT_BITS = /......../
 
-  def initialize(panels = 4)
+  def initialize(panels = 4, width = 8, height = 9)
+    @width = width
+    @height = height
     @panels = panels
-    @screen = [ Array.new(@panels * 8, false),
-                Array.new(@panels * 8, false),
-                Array.new(@panels * 8, false),
-                Array.new(@panels * 8, false),
-                Array.new(@panels * 8, false),
-                Array.new(@panels * 8, false),
-                Array.new(@panels * 8, false),
-                Array.new(@panels * 8, false),
-                Array.new(@panels * 8, false)]
+    @screen = [ Array.new(@panels * @width, false),
+                Array.new(@panels * @width, false),
+                Array.new(@panels * @width, false),
+                Array.new(@panels * @width, false),
+                Array.new(@panels * @width, false),
+                Array.new(@panels * @width, false),
+                Array.new(@panels * @width, false),
+                Array.new(@panels * @width, false),
+                Array.new(@panels * @width, false)]
 
     @blank_screen = Marshal.dump(@screen)
     @blink_bit = "1"
+  end
+
+  def height
+    @height
+  end
+
+  def width
+    @panels * @width
   end
 
   def col(col, value)
@@ -41,7 +51,7 @@ class Screen
   # convert to bit stream
   def ascii_bit_stream
     s = ""
-    0.upto((@panels * 8)-1) do |col|
+    0.upto((@panels * @width)-1) do |col|
       @screen.each do |row|
         s << (row[col] ? "1" : "0")
       end
@@ -51,7 +61,7 @@ class Screen
 
   def ascii_bit_stream2
     s = ""
-    0.upto((PANELS * 8)-1) do |col|
+    0.upto((@panels * @width)-1) do |col|
       s << @blink_bit
       @screen.each do |row|
         s << (row[col] ? "1" : "0")
