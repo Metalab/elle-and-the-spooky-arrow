@@ -2,6 +2,7 @@ require_relative 'screen'
 require_relative 'device'
 require_relative 'pixel'
 require_relative 'joystick'
+require_relative 'audio'
 
 class Game
   @@fps = 25
@@ -9,6 +10,7 @@ class Game
   def self.run
     screen = Screen.new
     device = Device.new(screen)
+    audio = Audio.new('data/noise.pd')
     j1 = Joystick.new
     p1 = Pixel.new(screen)
 
