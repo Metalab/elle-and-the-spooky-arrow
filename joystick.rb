@@ -3,8 +3,8 @@ require 'fcntl'
 class Joystick
   attr_accessor :state
 
-  def initialize
-    @device = "/dev/input/js0"
+  def initialize(device)
+    @device = device || "/dev/input/js0"
     @fd = IO::sysopen(@device, Fcntl::O_RDONLY)
   end
 
@@ -41,5 +41,3 @@ class Joystick
     }
   end
 end
-
-j = Joystick.new
