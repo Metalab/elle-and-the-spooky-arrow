@@ -21,7 +21,7 @@ class Game
       arrow.update(frame_count)
       arrow.draw
 
-      guy.update
+      guy.update(j1.action)
       guy.draw
       device.flush
       frame_count += 1

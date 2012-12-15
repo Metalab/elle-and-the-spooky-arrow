@@ -10,7 +10,12 @@ class Guy
             ]
   end
 
-  def update
+  def update(action)
+    case action
+    when :up    then @lane = [@lane - 1, 0].max
+    when :down  then @lane = [@lane + 1, 2].min
+    end
+
     @body.each do |el|
       el[0] = (el[0] + (@speed * @direction)) % @screen.width
     end
