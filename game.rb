@@ -20,6 +20,8 @@ class Game
     loop do
       arrow.update(frame_count)
       arrow.draw
+
+      guy.update
       guy.draw
       device.flush
       frame_count += 1
