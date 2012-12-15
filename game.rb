@@ -18,7 +18,6 @@ class Game
     frame_count = 0
 
     loop do
-      #p1.action(j1.action)
       arrow.update(frame_count)
       arrow.draw
       guy.draw
