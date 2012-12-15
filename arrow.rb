@@ -5,9 +5,9 @@ class Arrow
     @direction = 1
     @lane = 0
     @body = [
-              [2, Proc.new { @lane + 0 }], [0, Proc.new { @lane + 1 }],
-              [1, Proc.new { @lane + 1 }], [2, Proc.new { @lane + 1 }],
-              [3, Proc.new { @lane + 1 }], [2, Proc.new { @lane + 2 }]
+              [16 + 2, Proc.new { @lane + 0 }], [16 + 0, Proc.new { @lane + 1 }],
+              [16 + 1, Proc.new { @lane + 1 }], [16 + 2, Proc.new { @lane + 1 }],
+              [16 + 3, Proc.new { @lane + 1 }], [16 + 2, Proc.new { @lane + 2 }]
             ]
   end
 
