@@ -14,7 +14,7 @@ class Screen
                 Array.new(PANELS * 8, false),
                 Array.new(PANELS * 8, false)]
 
-    @blank_screen = @screen.dup
+    @blank_screen = Marshal.dump(@screen)
     @blink_bit = "1"
   end
 
@@ -59,6 +59,6 @@ class Screen
   end
 
   def reset
-    @screen = @blank_screen.dup
+    @screen = Marshal.load(@blank_screen)
   end
 end
