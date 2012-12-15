@@ -9,7 +9,8 @@ class Arrow
             ]
   end
 
-  def update
+  def update(frame_count)
+    @lane = [0, 3, 6].sample if frame_count % 15
     @body.each do |el|
       el[0] = el[0] + (@speed * @direction)
       el[1] = el[1] + (@speed * @direction)

@@ -13,11 +13,15 @@ class Game
     audio = Audio.new('data/noise.pd')
     j1 = Joystick.new
     arrow = Arrow.new(screen)
+    frame_count = 0
 
     loop do
       #p1.action(j1.action)
+      arrow.update(frame_count)
       arrow.draw
+
       device.flush
+      frame_count += 1
       sleep(1/@@fps.to_f)
     end
   end
