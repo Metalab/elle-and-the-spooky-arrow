@@ -19,7 +19,7 @@ class Game
       p1.action(j1.action)
       p1.draw
 
-      d.flush
+      device.flush
       sleep(1/@@fps.to_f)
     }
   end
