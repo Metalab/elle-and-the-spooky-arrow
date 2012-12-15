@@ -7,21 +7,21 @@ class Game
   @@fps = 25
 
   def self.run
-    _start = Time.now.usec
-
     screen = Screen.new
     device = Device.new(screen)
     j1 = Joystick.new
     p1 = Pixel.new(screen)
 
-    _end = Time.now.usec
-    puts "#{(_end - _start)/1000.0} ms"
-
     loop {
+      _start = Time.now.usec
+
       p1.action(j1.action)
       p1.draw
       device.flush
       sleep(1/@@fps.to_f)
+
+      _end = Time.now.usec
+      puts "#{(_end - _start)/1000.0} ms"
     }
   end
 end
