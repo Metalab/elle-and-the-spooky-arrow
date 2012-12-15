@@ -14,7 +14,6 @@ class Device
 
   def flush
     @io.write(DARKEN_PIN,LOW)
-    @io.read(DARKEN_PIN)
     @fd = IO::sysopen(@device, Fcntl::O_WRONLY)
     f = IO.open(@fd)
     f.sync = true
@@ -23,6 +22,5 @@ class Device
     f.close
     @screen.reset
     @io.write(DARKEN_PIN,HIGH)
-    @io.read(DARKEN_PIN)
   end
 end

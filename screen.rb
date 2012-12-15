@@ -1,18 +1,18 @@
 class Screen
   NINE_BITS =  /........./
   EIGHT_BITS = /......../
-  PANELS = 4
 
-  def initialize
-    @screen = [ Array.new(PANELS * 8, false),
-                Array.new(PANELS * 8, false),
-                Array.new(PANELS * 8, false),
-                Array.new(PANELS * 8, false),
-                Array.new(PANELS * 8, false),
-                Array.new(PANELS * 8, false),
-                Array.new(PANELS * 8, false),
-                Array.new(PANELS * 8, false),
-                Array.new(PANELS * 8, false)]
+  def initialize(panels = 4)
+    @panels = panels
+    @screen = [ Array.new(@panels * 8, false),
+                Array.new(@panels * 8, false),
+                Array.new(@panels * 8, false),
+                Array.new(@panels * 8, false),
+                Array.new(@panels * 8, false),
+                Array.new(@panels * 8, false),
+                Array.new(@panels * 8, false),
+                Array.new(@panels * 8, false),
+                Array.new(@panels * 8, false)]
 
     @blank_screen = Marshal.dump(@screen)
     @blink_bit = "1"
@@ -35,13 +35,13 @@ class Screen
   end
 
   def []=(row, col, value)
-    @screen[col][row] = value
+    @screen[row][col] = value
   end
 
   # convert to bit stream
   def ascii_bit_stream
     s = ""
-    0.upto((PANELS * 8)-1) do |col|
+    0.upto((@panels * 8)-1) do |col|
       @screen.each do |row|
         s << (row[col] ? "1" : "0")
       end
@@ -66,7 +66,7 @@ class Screen
   end
 
   def bit_stream
-    ascii_bit_stream2.scan(EIGHT_BITS).map { |b| b.to_i(2) }
+    ascii_bit_stream_with_blink.scan(EIGHT_BITS).map { |b| b.to_i(2) }
   end
 
   def reset
