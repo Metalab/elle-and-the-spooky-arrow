@@ -1,5 +1,5 @@
-require './screen'
-require './device'
+require_relative 'screen'
+require_relative 'device'
 
 s = Screen.new
 d = Device.new(s)

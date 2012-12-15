@@ -1,7 +1,7 @@
-require './screen'
-require './device'
-require './pixel'
-require './joystick'
+require_relative 'screen'
+require_relative 'device'
+require_relative 'pixel'
+require_relative 'joystick'
 
 class Game
   @@fps = 25
