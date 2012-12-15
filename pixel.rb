@@ -10,7 +10,7 @@ class Pixel
     when :right then @x += 1
     when :left then @x -= 1
     when :down then @y += 1
-    when :down then @y -= 1
+    when :up then @y -= 1
     end
   end
 
