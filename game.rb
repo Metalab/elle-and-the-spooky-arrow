@@ -1,6 +1,6 @@
 require_relative 'screen'
 require_relative 'device'
-require_relative 'pixel'
+require_relative 'arrow'
 require_relative 'joystick'
 require_relative 'audio'
 
