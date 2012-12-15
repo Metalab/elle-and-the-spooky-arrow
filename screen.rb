@@ -58,7 +58,7 @@ class Screen
     ascii_bit_stream_with_blink.scan(EIGHT_BITS).map { |b| b.to_i(2) }
   end
 
-  def screen
+  def reset
     @screen = @blank_screen.dup
   end
 end
