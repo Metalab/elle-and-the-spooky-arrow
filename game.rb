@@ -12,7 +12,7 @@ class Game
     j1 = Joystick.new
     p1 = Pixel.new(screen)
 
-    loop {
+    loop do
       _start = Time.now.usec
 
       p1.action(j1.action)
@@ -23,7 +23,7 @@ class Game
       puts "#{(_end - _start)/1000.0} ms"
 
       sleep(1/@@fps.to_f)
-    }
+    end
   end
 end
 
