@@ -14,7 +14,7 @@ class Game
     audio = Audio.new('data/noise.pd')
     j1 = Joystick.new
     arrow = Arrow.new(screen)
-    guy = Guy.new
+    guy = Guy.new(screen)
     frame_count = 0
 
     loop do
