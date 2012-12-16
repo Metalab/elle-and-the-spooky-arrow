@@ -9,10 +9,8 @@ class Joystick
     work
   end
 
-  def action
-    _state = @state
-    @state = nil
-    _state
+  def reset
+    @state = 0
   end
 
   def actions

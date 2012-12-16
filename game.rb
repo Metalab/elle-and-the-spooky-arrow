@@ -37,9 +37,9 @@ class Game
         arrow.update(frame_count)
         arrow.draw
 
-        guy.update(j1.action)
+        guy.update(j1.state)
+        audio.update(j1.state)
         guy.draw
-        device.flush
       # explosion
       when 1
         explosion.draw(explosion_frame)
@@ -50,6 +50,8 @@ class Game
         break
       end
 
+      device.flush
+      j1.reset
       frame_count += 1
       sleep(1/@@fps.to_f)
     end
