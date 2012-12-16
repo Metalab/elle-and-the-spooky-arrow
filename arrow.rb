@@ -4,7 +4,7 @@ class Arrow
   def initialize(screen)
     @alive = true
     @screen = screen
-    @speed = 1
+    @speed = 2
     @direction = 1
     @lane = 0
     @body = [

@@ -7,7 +7,7 @@ require_relative 'guy'
 require_relative 'collision'
 
 class Game
-  @@fps = 25
+  @@fps = 20
 
   def self.run
     screen = Screen.new
