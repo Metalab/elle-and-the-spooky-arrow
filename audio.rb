@@ -14,6 +14,11 @@ class Audio
     Pd.send_bang(destination)
   end
 
+  def arrow(note)
+    Pd.send_float('arrow-note', note)
+    Pd.send_bang('arrow')
+  end
+
   def update(state)
     send_bang('play') if state == :up
   end
