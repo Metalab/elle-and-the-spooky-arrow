@@ -18,7 +18,7 @@ class Game
     arrow = Arrow.new(screen)
     guy = Guy.new(screen)
     collision = Collision.new
-    explosion = Explosion.new
+    explosion = Explosion.new(screen)
     frame_count = 0
     explosion_frame = 0
     game_state = 0 # 0 - running, 1 - explosion, 2 end
