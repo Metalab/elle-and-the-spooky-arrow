@@ -7,7 +7,7 @@ class Explosion
   end
 
   def draw(explosion_frame)
-    @frames[explosion_frame].each |el|
+    @frames[explosion_frame].each do |el|
       @screen[el[0], el[1]] = true
     end
   end
