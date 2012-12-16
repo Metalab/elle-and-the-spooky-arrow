@@ -18,7 +18,12 @@ class Game
     @collision = Collision.new(@arrow, @guy)
     @explosion = Explosion.new(@screen)
     @frame_count = 0
-    @game_state = 0 # 0 - running, 1 - explosion, 2 end
+
+    # 0 - running
+    # 1 - explosion
+    # 2 - restart
+    # 3 - end
+    @game_state = 0
     @score = 0
   end
 
@@ -56,8 +61,11 @@ class Game
         puts "SCORE #{@score}"
         sleep(5)
         init
+      when 3
+        break
       end
 
+      @game_state = 3 if @j1.state == :start
       @score =+ @frame_count/2 * 2
       @device.flush
       @j1.reset
