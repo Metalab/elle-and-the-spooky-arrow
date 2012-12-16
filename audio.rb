@@ -33,6 +33,10 @@ class Audio
     end
   end
 
+  def explosion
+    Pd.send_bang('explosion')
+  end
+
   def update_j1(state)
     case state
     when :up
