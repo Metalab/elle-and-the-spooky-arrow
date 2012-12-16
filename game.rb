@@ -63,10 +63,10 @@ class Game
   end
 
   def self.run
-    g = new
-    g.init_once
-    g.init
-    g.run
+    _game = new
+    _game.init_once
+    _game.init
+    _game.run
   end
 end
 
