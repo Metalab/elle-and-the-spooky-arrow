@@ -18,8 +18,8 @@ class Score
       @screen.col(col, true)
     end
 
-    0.upto(@mod) do |row|
-      @screen[@cols+1, row] = true
+    0.upto(@mod -1) do |row|
+      @screen[@cols, row] = true
     end
 
   end
