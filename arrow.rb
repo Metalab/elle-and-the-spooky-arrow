@@ -1,5 +1,8 @@
 class Arrow
+  attr_reader :body, :lane
+
   def initialize(screen)
+    @alive = true
     @screen = screen
     @speed = 1
     @direction = 1
@@ -11,6 +14,10 @@ class Arrow
             ]
   end
 
+  def die!
+    @alive = false
+  end
+
   def update(frame_count)
     @lane = [0, 1, 2].sample if frame_count % 15 == 0
     @body.each do |el|
@@ -19,8 +26,10 @@ class Arrow
   end
 
   def draw
-    @body.each do |el|
-      @screen[el[0], el[1].call] = true
+    if @alive
+      @body.each do |el|
+        @screen[el[0], el[1].call] = true
+      end
     end
   end
 end

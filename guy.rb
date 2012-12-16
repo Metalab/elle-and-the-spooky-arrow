@@ -1,5 +1,8 @@
 class Guy
+  attr_reader :body, :lane
+
   def initialize(screen)
+    @alive = true
     @screen = screen
     @speed = 1
     @direction = 1
@@ -8,6 +11,10 @@ class Guy
               [0, Proc.new { @lane * 3 + 0 }], [1, Proc.new { @lane * 3 + 0 }],
               [0, Proc.new { @lane * 3 + 1 }], [0, Proc.new { @lane * 3 + 2 }]
             ]
+  end
+
+  def die!
+    @alive = false
   end
 
   def update(action)
@@ -22,8 +29,10 @@ class Guy
   end
 
   def draw
-    @body.each do |el|
-      @screen[el[0], el[1].call] = true
+    if @alive
+      @body.each do |el|
+        @screen[el[0], el[1].call] = true
+      end
     end
   end
 end

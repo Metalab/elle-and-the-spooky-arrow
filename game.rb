@@ -4,6 +4,7 @@ require_relative 'arrow'
 require_relative 'joystick'
 require_relative 'audio'
 require_relative 'guy'
+require_relative 'collision'
 
 class Game
   @@fps = 25
@@ -15,9 +16,17 @@ class Game
     j1 = Joystick.new
     arrow = Arrow.new(screen)
     guy = Guy.new(screen)
+    collision = Collision.new
     frame_count = 0
 
     loop do
+
+      if collision.collide?(arrow, guy)
+        #explosion
+        guy.die!
+        arrow.die!
+      end
+
       arrow.update(frame_count)
       arrow.draw
 
