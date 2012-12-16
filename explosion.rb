@@ -2,7 +2,7 @@ class Explosion
   def initialize(screen)
     @screen = screen
     @finished = false
-    @explosion_frame = 0
+    @frame = 0
     @frames = []
     @frames << [[3,4]]
     @frames << [[3,3], [3,4], [2,4], [4,4], [3,5]]
@@ -18,12 +18,12 @@ class Explosion
   end
 
   def draw
-    @frames[@explosion_frame].each do |el|
+    @frames[@frame].each do |el|
       [0, 8, 16, 24].each do |start|
         @screen[start + el[0], el[1]] = true
       end
     end
-    @explosion_frame += 1
-    @finished = true if @explosion_count ==  @frames.size - 1
+    @frame += 1
+    @finished = true if @frame ==  @frames.size - 1
   end
 end
