@@ -15,7 +15,7 @@ class Game
     @device = Device.new(@screen)
     @arrow = Arrow.new(@screen)
     @guy = Guy.new(@screen)
-    @audio.init_entities(@arrow)
+    @audio.init_entities(@arrow, @guy)
     @collision = Collision.new(@arrow, @guy)
     @explosion = Explosion.new(@screen)
     @score = Score.new(@screen)
@@ -44,6 +44,7 @@ class Game
           @guy.die!
           @arrow.die!
           @audio.arrow_off
+          @audio.guy_off
           @audio.explosion
           @game_state = 1
         end
@@ -54,6 +55,7 @@ class Game
 
         @guy.update(@j1.state)
         @guy.draw
+        @audio.update_guy
         @audio.update_j1(@j1.state)
         @score.increase @frame_count/50
 
