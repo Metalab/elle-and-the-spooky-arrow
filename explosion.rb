@@ -8,7 +8,9 @@ class Explosion
 
   def draw(explosion_frame)
     @frames[explosion_frame].each do |el|
-      @screen[el[0], el[1]] = true
+      [0, 8, 16, 24].each do |start|
+        @screen[start + el[0], el[1]] = true
+      end
     end
   end
 end
