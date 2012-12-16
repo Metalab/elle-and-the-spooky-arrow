@@ -8,9 +8,8 @@ require_relative 'explosion'
 require_relative 'collision'
 
 class Game
-  @fps = 20
-
   def init
+    @fps = 20
     @screen = Screen.new
     @device = Device.new(@screen)
     @audio = Audio.new('data/noise.pd')
@@ -59,7 +58,9 @@ class Game
   end
 
   def self.run
-    new.run
+    g = new
+    g.init
+    g.run
   end
 end
 
