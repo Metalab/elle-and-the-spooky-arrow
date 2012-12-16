@@ -59,27 +59,21 @@ class Screen
     s
   end
 
-  def ascii_bit_stream2
-    s = ""
-    0.upto((@panels * @width)-1) do |col|
-      s << @blink_bit
-      @screen.each do |row|
-        s << (row[col] ? "1" : "0")
-      end
-    end
-    s
-  end
-
   # add blink bit (first bit)
   def ascii_bit_stream_with_blink
     ascii_bit_stream.scan(NINE_BITS).map { |b| (@blink_bit + b) }.join("")
   end
 
+  def prepare
+    bit_stream
+  end
+
   def bit_stream
-    ascii_bit_stream_with_blink.scan(EIGHT_BITS).map { |b| b.to_i(2) }
+    @bit_stream ||= ascii_bit_stream_with_blink.scan(EIGHT_BITS).map { |b| b.to_i(2) }
   end
 
   def reset
     @screen = Marshal.load(@blank_screen)
+    @bit_stream = nil
   end
 end

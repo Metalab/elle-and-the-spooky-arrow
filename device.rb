@@ -13,6 +13,7 @@ class Device
   end
 
   def flush
+    @screen.prepare
     @io.write(DARKEN_PIN,LOW)
     @fd = IO::sysopen(@device, Fcntl::O_WRONLY)
     f = IO.open(@fd)
