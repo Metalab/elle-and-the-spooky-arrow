@@ -14,6 +14,7 @@ class Game
     @device = Device.new(@screen)
     @arrow = Arrow.new(@screen)
     @guy = Guy.new(@screen)
+    @audio.init_entities(@arrow)
     @collision = Collision.new
     @explosion = Explosion.new(@screen)
     @frame_count = 0
@@ -34,6 +35,7 @@ class Game
         if @collision.collide?(@arrow, @guy)
           @guy.die!
           @arrow.die!
+          @audio.arrow_off
           @game_state = 1
         end
 
@@ -41,8 +43,8 @@ class Game
         @arrow.draw
 
         @guy.update(@j1.state)
-        @audio.update_arrow
         @guy.draw
+        @audio.update_arrow
       # explosion
       when 1
         @game_state = 2 if @explosion.finished?

@@ -5,12 +5,14 @@ require_relative 'lib/ffi-pd'
 class Audio
   def initialize(file_name)
     @file_name = file_name
-    @arrow = arrow
 
     init!
     Stream.new
+  end
 
-    init_entities
+  def init_entities(arrow)
+    @arrow = arrow
+    arrow_on
   end
 
   def arrow_on
@@ -20,7 +22,7 @@ class Audio
   end
 
   def arrow_off
-    Pd.send_Bang('arrow-off')
+    Pd.send_bang('arrow-off')
   end
 
   def update_arrow
@@ -56,10 +58,6 @@ class Stream < FFI::PortAudio::Stream
     Pd.process_float(buffer_size / 64, nil, output)
 
     :paContinue
-  end
-
-  def init_entities
-    arrow_on
   end
 
   def init!(channel_count, sample_rate, buffer_size)
