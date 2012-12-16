@@ -3,29 +3,23 @@ require 'ffi-portaudio'
 require_relative 'lib/ffi-pd'
 
 class Audio
-  def initialize(file_name, channel_count = 2, sample_rate = 44100)
-    @file_name, @channel_count, @sample_rate = file_name, channel_count, sample_rate
+  def initialize(file_name)
+    @file_name = file_name
+    @arrow = arrow
     init!
 
     Stream.new
   end
 
-  def send_bang(destination)
-    Pd.send_bang(destination)
-  end
-
-  def arrow(note)
-    Pd.send_float('arrow-note', note)
+  def update_arrow
+    notes = [67, 65, 60]
+    Pd.send_float('arrow-note', notes[@arrow.lane])
     Pd.send_bang('arrow')
-  end
-
-  def update(state)
-    send_bang('play') if state == :up
   end
 
   def init!
     Pd.init
-    Pd.init_audio(0, @channel_count, @sample_rate)
+    Pd.init_audio(0, 2, 44100)
     Pd.open(@file_name, '.')
 
     Pd.start_message(1)

@@ -41,8 +41,7 @@ class Game
         @arrow.draw
 
         @guy.update(@j1.state)
-        @audio.update(@j1.state)
-        @audio.arrow(50 + @arrow.lane * 5) if @arrow.body[4][0] % 3 == 0
+        @audio.update_arrow
         @guy.draw
       # explosion
       when 1
