@@ -6,6 +6,7 @@ require_relative 'audio'
 require_relative 'guy'
 require_relative 'explosion'
 require_relative 'collision'
+require_relative 'score'
 
 class Game
   def init
@@ -25,7 +26,7 @@ class Game
     # 3 - end
     # 4 - init
     @game_state = 0
-    @score = 0
+    @score = Score.new
   end
 
   def init_once
@@ -60,7 +61,7 @@ class Game
         @explosion.draw
       # end
       when 2
-        puts "SCORE #{@score}"
+        @score.draw
         @game_state = 4 if @j1.state == :start
       when 3
         break
@@ -69,7 +70,7 @@ class Game
       end
 
       @game_state = 3 if @j1.state == :start
-      @score =+ @frame_count/2 * 2
+      @score.increase @frame_count/2 * 2
       @device.flush
       @j1.reset
       @frame_count += 1
