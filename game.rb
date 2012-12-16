@@ -23,6 +23,7 @@ class Game
     # 1 - explosion
     # 2 - restart
     # 3 - end
+    # 4 - init
     @game_state = 0
     @score = 0
   end
@@ -60,10 +61,11 @@ class Game
       # end
       when 2
         puts "SCORE #{@score}"
-        sleep(5)
-        init
+        @game_state = 4 if @j1.state == :start
       when 3
         break
+      when 4
+        init
       end
 
       @game_state = 3 if @j1.state == :start
