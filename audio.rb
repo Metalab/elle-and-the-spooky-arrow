@@ -6,15 +6,29 @@ class Audio
   def initialize(file_name)
     @file_name = file_name
     @arrow = arrow
-    init!
 
+    init!
     Stream.new
+
+    init_entities
+  end
+
+  def arrow_on
+    @arrow_lane = @arrow.lane
+    update_arrow
+    Pd.send_bang('arrow-on')
+  end
+
+  def arrow_off
+    Pd.send_Bang('arrow-off')
   end
 
   def update_arrow
-    notes = [67, 65, 60]
-    Pd.send_float('arrow-note', notes[@arrow.lane])
-    Pd.send_bang('arrow')
+    if @arrow.lane != @arrow_lane
+      notes = [67, 65, 60]
+      Pd.send_float('arrow-note', notes[@arrow.lane])
+      @arrow_lane = @arrow.lane
+    end
   end
 
   def init!
@@ -42,6 +56,10 @@ class Stream < FFI::PortAudio::Stream
     Pd.process_float(buffer_size / 64, nil, output)
 
     :paContinue
+  end
+
+  def init_entities
+    arrow_on
   end
 
   def init!(channel_count, sample_rate, buffer_size)
