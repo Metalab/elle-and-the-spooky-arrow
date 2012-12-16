@@ -55,6 +55,8 @@ class Game
         @guy.update(@j1.state)
         @guy.draw
         @audio.update_j1(@j1.state)
+        @score.increase @frame_count/200
+
       # explosion
       when 1
         @game_state = 2 if @explosion.finished?
@@ -70,7 +72,6 @@ class Game
       end
 
       @game_state = 3 if @j1.state == :select
-      @score.increase @frame_count/10
       @device.flush
       @j1.reset
       @frame_count += 1
