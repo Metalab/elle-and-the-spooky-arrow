@@ -33,6 +33,15 @@ class Audio
     end
   end
 
+  def update_j1(state)
+    case state
+    when :up
+      Pd.send_float('j1', 79)
+    when :down
+      Pd.send_float('j1', 72)
+    end
+  end
+
   def init!
     Pd.init
     Pd.init_audio(0, 2, 44100)

@@ -41,10 +41,11 @@ class Game
 
         @arrow.update(@frame_count)
         @arrow.draw
+        @audio.update_arrow
 
         @guy.update(@j1.state)
         @guy.draw
-        @audio.update_arrow
+        @audio.update_j1(@j1.state)
       # explosion
       when 1
         @game_state = 2 if @explosion.finished?
