@@ -20,7 +20,6 @@ class Game
     collision = Collision.new
     explosion = Explosion.new(screen)
     frame_count = 0
-    explosion_frame = 0
     game_state = 0 # 0 - running, 1 - explosion, 2 end
 
     loop do
@@ -42,9 +41,8 @@ class Game
         guy.draw
       # explosion
       when 1
-        explosion.draw(explosion_frame)
-        explosion_frame += 1
-        game_state = 2 if explosion_frame == 1
+        game_state = 2 if explosion.finished?
+        explosion.draw
       # end
       when 2
         break
