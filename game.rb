@@ -9,7 +9,7 @@ require_relative 'collision'
 
 class Game
   def init
-    @fps = 20
+    @fps = 10
     @screen = Screen.new
     @device = Device.new(@screen)
     @arrow = Arrow.new(@screen)
