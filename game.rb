@@ -19,6 +19,7 @@ class Game
     @explosion = Explosion.new(@screen)
     @frame_count = 0
     @game_state = 0 # 0 - running, 1 - explosion, 2 end
+    @score = 0
   end
 
   def init_once
@@ -52,9 +53,12 @@ class Game
         @explosion.draw
       # end
       when 2
-        break
+        puts "SCORE #{@score}"
+        sleep(5)
+        init
       end
 
+      @score =+ @frame_count/2 * 2
       @device.flush
       @j1.reset
       @frame_count += 1
