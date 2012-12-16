@@ -42,6 +42,7 @@ class Game
           @guy.die!
           @arrow.die!
           @audio.arrow_off
+          @audio.explosion
           @game_state = 1
         end
 
