@@ -4,6 +4,7 @@ require_relative 'arrow'
 require_relative 'joystick'
 require_relative 'audio'
 require_relative 'guy'
+require_relative 'explosion'
 require_relative 'collision'
 
 class Game
