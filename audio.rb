@@ -10,9 +10,11 @@ class Audio
     Stream.new
   end
 
-  def init_entities(arrow)
+  def init_entities(arrow, guy)
     @arrow = arrow
     arrow_on
+    @guy = guy
+    guy_on
   end
 
   def arrow_on
@@ -44,6 +46,33 @@ class Audio
     when :down
       Pd.send_float('j1', 72)
     end
+  end
+
+  def distance
+    arrow_front_col = @arrow.body[4][0]
+    guy_back_col = @guy.body[0][0]
+    distance = (guy_back_col - arrow_front_col).abs
+    if distance >= 16
+      if guy_back_col >= 16
+        distance = 31 - guy_back_col + arrow_front_col
+      else
+        distance = 31 - arrow_front_col + guy_back_col
+      end
+    end
+    distance
+  end
+
+  def guy_on
+    Pd.send_float('guy-distance', distance)
+    Pd.send_bang('guy-on')
+  end
+
+  def guy_off
+    Pd.send_bang('guy-off')
+  end
+
+  def update_guy
+    Pd.send_float('guy-distance', distance.to_f)
   end
 
   def init!
