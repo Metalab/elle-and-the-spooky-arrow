@@ -69,7 +69,7 @@ class Game
         init
       end
 
-      @game_state = 3 if @j1.state == :start
+      @game_state = 3 if @j1.state == :select
       @score.increase @frame_count/2 * 2
       @device.flush
       @j1.reset
