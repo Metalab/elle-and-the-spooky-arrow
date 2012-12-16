@@ -55,7 +55,7 @@ class Game
         @guy.update(@j1.state)
         @guy.draw
         @audio.update_j1(@j1.state)
-        @score.increase @frame_count/200
+        @score.increase @frame_count/50
 
       # explosion
       when 1
