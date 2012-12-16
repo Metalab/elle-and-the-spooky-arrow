@@ -8,52 +8,58 @@ require_relative 'explosion'
 require_relative 'collision'
 
 class Game
-  @@fps = 20
+  @fps = 20
 
-  def self.run
-    screen = Screen.new
-    device = Device.new(screen)
-    audio = Audio.new('data/noise.pd')
-    j1 = Joystick.new
-    arrow = Arrow.new(screen)
-    guy = Guy.new(screen)
-    collision = Collision.new
-    explosion = Explosion.new(screen)
-    frame_count = 0
-    game_state = 0 # 0 - running, 1 - explosion, 2 end
+  def init
+    @screen = Screen.new
+    @device = Device.new(@screen)
+    @audio = Audio.new('data/noise.pd')
+    @j1 = Joystick.new
+    @arrow = Arrow.new(@screen)
+    @guy = Guy.new(@screen)
+    @collision = Collision.new
+    @explosion = Explosion.new(@screen)
+    @frame_count = 0
+    @game_state = 0 # 0 - running, 1 - explosion, 2 end
+  end
 
+  def run
     loop do
 
-      case game_state
+      case @game_state
       # running
       when 0
-        if collision.collide?(arrow, guy)
-          guy.die!
-          arrow.die!
-          game_state = 1
+        if @collision.collide?(@arrow, @guy)
+          @guy.die!
+          @arrow.die!
+          @game_state = 1
         end
 
-        arrow.update(frame_count)
-        arrow.draw
+        @arrow.update(@frame_count)
+        @arrow.draw
 
-        guy.update(j1.state)
-        audio.update(j1.state)
-        audio.arrow(50 + arrow.lane * 5) if arrow.body[4][0] % 3 == 0
-        guy.draw
+        @guy.update(@j1.state)
+        @audio.update(@j1.state)
+        @audio.arrow(50 + @arrow.lane * 5) if @arrow.body[4][0] % 3 == 0
+        @guy.draw
       # explosion
       when 1
-        game_state = 2 if explosion.finished?
-        explosion.draw
+        @game_state = 2 if @explosion.finished?
+        @explosion.draw
       # end
       when 2
         break
       end
 
-      device.flush
-      j1.reset
-      frame_count += 1
-      sleep(1/@@fps.to_f)
+      @device.flush
+      @j1.reset
+      @frame_count += 1
+      sleep(1/@fps.to_f)
     end
+  end
+
+  def self.run
+    new.run
   end
 end
 
