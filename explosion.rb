@@ -24,6 +24,6 @@ class Explosion
       end
     end
     @explosion_frame += 1
-    @finished = true if @frames.size - 1
+    @finished = true if @explosion_count ==  @frames.size - 1
   end
 end
