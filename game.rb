@@ -15,7 +15,7 @@ class Game
     @arrow = Arrow.new(@screen)
     @guy = Guy.new(@screen)
     @audio.init_entities(@arrow)
-    @collision = Collision.new
+    @collision = Collision.new(@arrow, @guy)
     @explosion = Explosion.new(@screen)
     @frame_count = 0
     @game_state = 0 # 0 - running, 1 - explosion, 2 end
@@ -32,7 +32,7 @@ class Game
       case @game_state
       # running
       when 0
-        if @collision.collide?(@arrow, @guy)
+        if @collision.collide?
           @guy.die!
           @arrow.die!
           @audio.arrow_off
