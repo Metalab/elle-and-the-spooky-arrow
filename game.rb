@@ -18,21 +18,36 @@ class Game
     guy = Guy.new(screen)
     collision = Collision.new
     frame_count = 0
+    explosion_count = 0
+    game_state = 0 # 0 - running, 1 - explosion, 2 end
 
     loop do
 
-      if collision.collide?(arrow, guy)
-        #explosion
-        guy.die!
-        arrow.die!
+      case game_state
+      # running
+      when 0
+        if collision.collide?(arrow, guy)
+          guy.die!
+          arrow.die!
+          game_state = 1
+        end
+
+        arrow.update(frame_count)
+        arrow.draw
+
+        guy.update(j1.action)
+        guy.draw
+        device.flush
+      # explosion
+      when 1
+        explosion.draw(explosion_count)
+        explosion_count += 1
+        game_state = 2 if explosion_count == 1
+      # end
+      when 2
+        break
       end
 
-      arrow.update(frame_count)
-      arrow.draw
-
-      guy.update(j1.action)
-      guy.draw
-      device.flush
       frame_count += 1
       sleep(1/@@fps.to_f)
     end
