@@ -1,5 +1,6 @@
 class Score
-  def initialize
+  def initialize(screen)
+    @screen = screen
     @score = 0
   end
 
@@ -9,6 +10,17 @@ class Score
 
   def draw
     puts "SCORE #{@score}"
-  end
 
+    @cols = (@score / @screen.height)
+    @mod = @score % @screen.height
+
+    0.upto(@cols - 1) do |col|
+      @screen.col(col, true)
+    end
+
+    0.upto(@mod) do |row|
+      @screen[@cols+1, row] = true
+    end
+
+  end
 end

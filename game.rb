@@ -18,6 +18,7 @@ class Game
     @audio.init_entities(@arrow)
     @collision = Collision.new(@arrow, @guy)
     @explosion = Explosion.new(@screen)
+    @score = Score.new(@screen)
     @frame_count = 0
 
     # 0 - running
@@ -26,7 +27,6 @@ class Game
     # 3 - end
     # 4 - init
     @game_state = 0
-    @score = Score.new
   end
 
   def init_once
