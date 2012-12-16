@@ -10,6 +10,10 @@ class Audio
     Stream.new
   end
 
+  def send_bang(destination)
+    Pd.send_bang(destination)
+  end
+
   def init!
     Pd.init
     Pd.init_audio(0, @channel_count, @sample_rate)
