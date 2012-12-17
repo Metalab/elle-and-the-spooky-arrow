@@ -30,6 +30,13 @@ class Joystick
     actions
   end
 
+  # TODO using the right struct (LsCC) for unpacking, C* is wrong (but works :)
+  # struct js_event {
+  #  unsigned int time;        /* event timestamp in milliseconds */
+  #  short value;            /* value */
+  #  unsigned char type;     /* event type */
+  #  unsigned char number;   /* axis/button number */
+  #};
   def work
     f = IO.open(@fd)
     Thread.new {
